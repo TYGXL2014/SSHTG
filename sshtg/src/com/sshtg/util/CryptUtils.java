@@ -33,10 +33,8 @@ public final class CryptUtils {
     public static byte[] getSecretKey() throws Exception { 
         KeyGenerator keygen = KeyGenerator.getInstance(Algorithm); 
         SecretKey deskey = keygen.generateKey(); 
-        // if (debug ) System.out.println ("生成密钥:"+byte2hex (deskey.getEncoded  
-        // ()));  
+        // if (debug ) System.out.println ("生成密钥:"+byte2hex (deskey.getEncoded()));  
         return deskey.getEncoded(); 
- 
     } 
  
     /**
