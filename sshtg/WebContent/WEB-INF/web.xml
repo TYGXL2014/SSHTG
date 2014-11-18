@@ -14,8 +14,20 @@
         <filter-name>struts-prepare</filter-name>
         <filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareFilter</filter-class>
   </filter>
-
-  
+  <!-- 配置初始加载的过滤器 -->
+  <filter>
+    <filter-name>struts2</filter-name>
+    <filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
+    <init-param>
+        <param-name>config</param-name>
+        <param-value>resources/struts-default.xml,resources/struts-plugin.xml,resources/struts.xml</param-value>
+    </init-param>
+  </filter>
+  <!-- 配置Spring的监听器 -->
+  <listener>
+    <display-name>SpringContextLoaderListener</display-name>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
   
   
 </web-app>
