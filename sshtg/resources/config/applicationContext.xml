@@ -24,11 +24,19 @@
 	    http://www.springframework.org/schema/util  
 	    http://www.springframework.org/schema/util/spring-util.xsd">
         
-<!--         加载数据库属性配置文件
+        <!--加载数据库属性配置文件 -->
         <context:property-placeholder location="classpath:config/jdbc-config.properties"/>
         
-        数据库连接池c3p0
-        <bean id="dataSource" class="com.mchage.v2.c3p0.ComboPooledDataSource" destory-method="close">
+        <!-- 使用spring本地,这里的property必须和DriverManagerDataSource的属性名字一样 -->
+        <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+            <property name="url" value="${db.url}"/>  
+            <property name="driverClassName" value="${db.driverClassName}"/>  
+            <property name="username" value="${db.username}"/>  
+            <property name="password" value="${db.password}"/>
+        </bean>
+        
+        <!--数据库连接池c3p0 -->
+<!--         <bean id="dataSource" class="com.mchage.v2.c3p0.ComboPooledDataSource" >
             <property name="jdbcUrl" value="${db.url}"></property>  
 	        <property name="driverClass" value="${db.driverClassName}"></property>  
 	        <property name="user" value="${db.username}"></property>  
@@ -38,31 +46,30 @@
 	        <property name="initialPoolSize" value="1"></property>  
 	        <property name="maxIdleTime" value="20"></property>
         </bean>
-        
-        session工厂
+ -->        
+        <!--session工厂 -->
         <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">  
 	        <property name="dataSource">  
 	            <ref bean="dataSource" />  
 	        </property>
 	        
-	        <property name="configLocation" value="classpath:hibernate.cfg.xml"/>
+	        <property name="configLocation" value="classpath:hibernate/hibernate.cfg.xml"/>
 	        
-	        自动扫描注解方式配置的hibernate类文件
+        <!--自动扫描注解方式配置的hibernate类文件 -->
 	        
-	        <property name="packagesToScan">  
+<!-- 	        <property name="packagesToScan">  
 	            <list>  
 	                <value>com.bufoon.entity</value>  
 	            </list>  
 	        </property>
-	        
+ -->	        
         </bean>
         
-        配置事务管理
+        <!--配置事务管理 -->
         <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
             <property name="sessionFactory" ref="sessionFactory"></property>
         </bean>
-        
- -->        
+              
 </beans>
 
 

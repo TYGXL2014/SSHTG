@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC 
+    "-//Hibernate/Hibernate Configuration DTD 4.3//EN"
+    "http://hibernate.sourceforge.net/hibernate-configuration.dtd">
+    
+<hibernate-configuration>
+    <session-factory name="hibernate_session_factory">
+        <!-- 为true表示将Hibernate发送给数据库的sql显示出来 -->
+        <property name="show_sql">true</property>
+        <!--SQL方言，这边设定的是MySQL5-->
+        <property name="dialect">org.hibernate.dialect.MySQL5Dialect</property>
+        <!--一次读的数据库记录数-->
+        <property name="jdbc.fetch_size">50</property>
+        <!-- 设定对数据库进行批量删除 -->
+        <property name="jdbc.batch_size">30</property>
+        <!--JNDI的配置-->
+        <!-- 数据源的名称 -->
+        <property name="connection.datasource">java:comp/env/jdbc/datasourcename</property>
+        <!-- Hibernate的连接加载类 --> 
+        <property name="connection.provider_class">net.sf.hibernate.connection.DatasourceConnectionProvider</property> 
+
+        <!-- Database connection settings -->
+	    <property name="connection.driver_class">org.mysql.jdbc.Driver</property>
+	    <property name="connection.url">jdbc:mysql://localhost:3306/test?characterEncoding=utf8</property>
+	    <property name="connection.username">root</property>
+	    <property name="connection.password"></property>
+
+        
+        <!-- 数据库表和类文件的映射文件 -->
+        <mapping />
+    </session-factory>
+</hibernate-configuration>
