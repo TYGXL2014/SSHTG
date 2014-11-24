@@ -26,6 +26,15 @@
 	    <property name="connection.password"></property>
 
         
+        <!-- 缓存配置：EhCache,Memcache,Redis -->
+        <!-- 启用Hibernate的二级缓存 -->
+        <property name="hibernate.cache.user_second_level_cache">true</property>
+        <property name="hibernate.cache.user_query_cache">true</property>
+        <!-- 指定二级缓存的第三方实现者 -->
+        <property name="hibernate.cache.provider_class">net.sf.ehcache.hibernate.EhCacheProvider</property>
+        <!-- 指定Hibernate二级缓存第三方所需配置，以右斜杠开头表示classpath -->
+        <property name="hibernate.cache.provider_configuration_file_resource_path">/hibernate/ehcache.xml</property>
+        
         <!-- 数据库表和类文件的映射文件 -->
         <mapping />
     </session-factory>
