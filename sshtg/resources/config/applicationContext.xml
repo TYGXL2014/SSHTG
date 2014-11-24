@@ -1,21 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframwork.org/schema/beans"
-       xmlns:xsi="http://www.w3c.org/2001/XMLSchema-instance"
-       xmlns:p="http://http://www.springframework.org/schema/p"
-       xmlns:aop="http://www.springframework.org/schema/aop"
-       xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:jee="http://www.springframework.org/schema/jee"
-       xmlns:tx="http://www.springframework.org/schema/tx"
-       xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.1.xsd  
-        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd  
-        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd  
-        http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-4.1.xsd  
-        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.1.xsd ">
+<beans xmlns="http://www.springframework.org/schema/beans" 
+       xmlns:context="http://www.springframework.org/schema/context" 
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+       xmlns:aop="http://www.springframework.org/schema/aop"  
+       xmlns:tx="http://www.springframework.org/schema/tx" 
+       xmlns:p="http://www.springframework.org/schema/p" 
+       xmlns:util="http://www.springframework.org/schema/util" 
+       xmlns:jdbc="http://www.springframework.org/schema/jdbc"  
+       xmlns:cache="http://www.springframework.org/schema/cache"  
+	   xsi:schemaLocation="  
+	    http://www.springframework.org/schema/context  
+	    http://www.springframework.org/schema/context/spring-context.xsd  
+	    http://www.springframework.org/schema/beans  
+	    http://www.springframework.org/schema/beans/spring-beans.xsd  
+	    http://www.springframework.org/schema/tx  
+	    http://www.springframework.org/schema/tx/spring-tx.xsd  
+	    http://www.springframework.org/schema/jdbc  
+	    http://www.springframework.org/schema/jdbc/spring-jdbc.xsd  
+	    http://www.springframework.org/schema/cache  
+	    http://www.springframework.org/schema/cache/spring-cache.xsd  
+	    http://www.springframework.org/schema/aop  
+	    http://www.springframework.org/schema/aop/spring-aop.xsd  
+	    http://www.springframework.org/schema/util  
+	    http://www.springframework.org/schema/util/spring-util.xsd">
         
-        <!-- 加载数据库属性配置文件 -->
+<!--         加载数据库属性配置文件
         <context:property-placeholder location="classpath:config/jdbc-config.properties"/>
         
-        <!-- 数据库连接池c3p0 -->
+        数据库连接池c3p0
         <bean id="dataSource" class="com.mchage.v2.c3p0.ComboPooledDataSource" destory-method="close">
             <property name="jdbcUrl" value="${db.url}"></property>  
 	        <property name="driverClass" value="${db.driverClassName}"></property>  
@@ -27,30 +39,30 @@
 	        <property name="maxIdleTime" value="20"></property>
         </bean>
         
-        <!-- session工厂 -->
+        session工厂
         <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">  
 	        <property name="dataSource">  
 	            <ref bean="dataSource" />  
 	        </property>
-	        <!-- 
+	        
 	        <property name="configLocation" value="classpath:hibernate.cfg.xml"/>
-	         -->
-	        <!-- 自动扫描注解方式配置的hibernate类文件 -->
-	        <!-- 
+	        
+	        自动扫描注解方式配置的hibernate类文件
+	        
 	        <property name="packagesToScan">  
 	            <list>  
 	                <value>com.bufoon.entity</value>  
 	            </list>  
 	        </property>
-	         -->
+	        
         </bean>
         
-        <!-- 配置事务管理 -->
+        配置事务管理
         <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
             <property name="sessionFactory" ref="sessionFactory"></property>
         </bean>
         
-        
+ -->        
 </beans>
 
 
