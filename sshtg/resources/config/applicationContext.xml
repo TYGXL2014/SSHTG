@@ -24,6 +24,12 @@
 	    http://www.springframework.org/schema/util  
 	    http://www.springframework.org/schema/util/spring-util.xsd">
         
+        <!-- spring使用注解 -->
+        <context:annotation-config /> 
+        
+        <!-- 自动扫描com.sshtg下的bean -->
+        <context:component-scan base-package="com.sshtg"/>
+        
         <!--加载数据库属性配置文件 -->
         <context:property-placeholder location="classpath:config/jdbc-config.properties"/>
         
@@ -35,8 +41,8 @@
             <property name="password" value="${db.password}"/>
         </bean>
         
-        <!--数据库连接池c3p0 -->
-<!--         <bean id="dataSource" class="com.mchage.v2.c3p0.ComboPooledDataSource" >
+        <!--数据库连接池c3p0 
+        <bean id="dataSource" class="com.mchage.v2.c3p0.ComboPooledDataSource" >
             <property name="jdbcUrl" value="${db.url}"></property>  
 	        <property name="driverClass" value="${db.driverClassName}"></property>  
 	        <property name="user" value="${db.username}"></property>  
@@ -46,30 +52,42 @@
 	        <property name="initialPoolSize" value="1"></property>  
 	        <property name="maxIdleTime" value="20"></property>
         </bean>
- -->        
+        -->
         <!--session工厂 -->
         <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">  
 	        <property name="dataSource">  
 	            <ref bean="dataSource" />  
 	        </property>
 	        
+	        <property name="hibernateProperties">
+	            <props>
+	                <!-- 指定Hibernate的连接方言 -->
+	                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+	                <!-- 配置启动应用时，是否根据Hibernate映射自动创建数据表 -->
+	                
+	                <prop key="hibernate.hbm2ddl.auto">update</prop>
+	                <!-- 显示sql语句 -->
+	                <prop key="hibernate.show_sql">true</prop>
+	           	</props>
+	        </property>
+	        
+	        <!-- 
 	        <property name="configLocation" value="classpath:hibernate/hibernate.cfg.xml"/>
-	        
-        <!--自动扫描注解方式配置的hibernate类文件 -->
-	        
-<!-- 	        <property name="packagesToScan">  
+	        -->
+	        <!--自动扫描注解方式配置的hibernate类文件 -->
+	    	<property name="packagesToScan">  
 	            <list>  
-	                <value>com.bufoon.entity</value>  
+	                <value>com.sshtg.test.model</value>  
 	            </list>  
 	        </property>
- -->	        
+  	      
         </bean>
-        
-        <!--配置事务管理 -->
+       
+        <!--配置事务管理 
         <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
             <property name="sessionFactory" ref="sessionFactory"></property>
         </bean>
-              
+       -->       
 </beans>
 
 
